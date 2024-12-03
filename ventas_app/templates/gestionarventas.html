@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+{% load static %}
+<div class="row"> <!--la fila-->
+
+    <div class="col sm-12 col-md-4 col-lg-4 col-xl-4"> <!--Columna izquierda--> 
+        <h1>Ventas</h1>
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="registrarVentas/" method="POST"> {% csrf_token %} <!--falta accion-->
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_venta" class="form-control" name="numid_venta" placeholder="Id venta" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_producto" class="form-control" name="numid_producto" placeholder="Id producto" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_cliente" class="form-control" name="numid_cliente" placeholder="Id Cliente" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="date" id="txtfecha_venta" class="form-control" name="txtfecha_venta" placeholder="Fecha venta" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_sucursal" class="form-control" name="numid_sucursal" placeholder="Id Sucursal" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numcantidad" class="form-control" name="numcantidad" placeholder="Cantidad" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="txtpago" class="form-control" name="txtpago" placeholder="Pago" min="1" max="9" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Ventas</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!--Columna izquierda--> 
+
+<div class="col"> <!--Columna derecha-->
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <h1>Listado de Ventass</h1>
+        <img class="w-50" src="{% static "img/ventas.jpg" %}" alt="">
+        <!--la tabla-->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id Ventas</th>
+                    <th scope="col">Id producto</th>
+                    <th scope="col">Id Cliente</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Id Sucursal</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Pago</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for m in misventas %}
+            
+            <tr>
+                <td> {{m.id_venta}} </td>
+                <td> {{m.id_producto}} </td>
+                <td> {{m.id_cliente}} </td>
+                <td> {{m.fecha_venta}} </td>
+                <td> {{m.id_sucursal}} </td>
+                <td> {{m.cantidad}} </td>
+                <td> {{m.pago}} </td>
+                <td> <a href="seleccionarVentas/{{m.id_venta}}" class="btn btn-info" >Editar</a></td>  <!--falta-->
+                <td> <a href="borrarVentas/{{m.id_venta}}" class="btn btn-danger">Borrar</a></td> <!--falta-->
+            </tr>    
+            
+            {% endfor %}
+
+        </tbody>
+        </table>
+
+    </div>
+
+</div> <!--Columna derecha-->
+
+</div> <!--la fila-->
+{% endblock %}

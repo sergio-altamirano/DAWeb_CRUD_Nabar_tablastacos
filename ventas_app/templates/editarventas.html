@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row"> <!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Ventas</h2>
+
+        <!--Aqui codigo tarjeta-->
+        <div class="card"> <!--la tarjeta-->
+            <div class="card-body">
+                <form action="/editarVentas/" method="POST"> {% csrf_token %} <!--falta accion-->
+
+                    <div class="form-growup">
+                        <input type="text" id="numid_venta" class="form-control" name="numid_venta" value="{{misventas.id_venta}}" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_producto" class="form-control" name="numid_producto" value="{{misventas.id_producto}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_cliente" class="form-control" name="numid_cliente" value="{{misventas.id_cliente}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="date" id="txtfecha_venta" class="form-control" name="txtfecha_venta" value="{{misventas.fecha_venta}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numid_sucursal" class="form-control" name="numid_sucursal" value="{{misventas.id_sucursal}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-3">
+                        <input type="text" id="numcantidad" class="form-control" name="numcantidad" value="{{misventas.cantidad}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-growup py-2">
+                        <input type="text" id="txtpago" class="form-control" name="txtpago" value="{{misventas.pago}}" min="1" max="9" required>
+                    </div>
+
+                    <div class="form-growup py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Materias</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Aqui codigo tarjeta-->
+    </div>
+</div> <!--fila en editar-->
+
+
+{% endblock %}
